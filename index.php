@@ -5,8 +5,6 @@
 * File: index.php
 */
 
-//$file_name = "documentation.yaml";
-
 $file_name = "example.yaml";
 
 include("includes/global.php");

@@ -11,25 +11,21 @@ project:
 # List of functions and their details.
 functions:
   -
-    name: "Example_Register"
-    url: "?action=register"
+    name: "Example_Function"
+    url: "?action=example_function"
     parameters:
       get: 
         -
-          name: "email"
-          description: "Unique E-mail address"
-          type: "String"
-        -
-          name: "name"
-          description: "The user's name"
+          name: "parameter_name"
+          description: "A brief description of what the parameter is for."
           type: "String"
       post:
         -
-          name: "password"
-          description: "The user's name"
+          name: "posted_parameter"
+          description: "A posted parameter instead of a get parameter."
           type: "String"
-    description: "Registers a new account to with your API."
-    short-desc: "Create an Account."
+    description: "A description of what the function is."
+    short-desc: "Short Description."
     success:
       code: 200
       results:
@@ -41,7 +37,7 @@ functions:
         -
            name: "success"
            type: "bool"
-           description: "Whether or not the registration was successful. ``true`` or ``false``"
+           description: "Whether or not the request was successful. ``true`` or ``false``"
            example: true
     failure:
       code: 403
@@ -49,7 +45,7 @@ functions:
         -
           name: "success"
           type: "bool"
-          description: "Whether or not the registration was successful. ``true`` or ``false``"
+          description: "Whether or not the request was successful. ``true`` or ``false``"
           example: false
         -
           name: "err_code"

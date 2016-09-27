@@ -1,0 +1,70 @@
+# Documentation.
+project:
+  name: "Example API"
+  version: 1.01
+# Be sure to have the trailing backslash.
+  access-url: "http://your.url.com/api.php"
+  home-description: >
+   This is going to be the home page description.
+   All this is for the purpose of adding <b>homepage</b> content.<br /><br />
+   It is also <i>HTML</i> compatible.
+# List of functions and their details.
+functions:
+  -
+    name: "Example_Register"
+    url: "?action=register"
+    parameters:
+      get: 
+        -
+          name: "email"
+          description: "Unique E-mail address"
+          type: "String"
+        -
+          name: "name"
+          description: "The user's name"
+          type: "String"
+      post:
+        -
+          name: "password"
+          description: "The user's name"
+          type: "String"
+    description: "Registers a new account to with your API."
+    short-desc: "Create an Account."
+    success:
+      code: 200
+      results:
+        -
+          name: "err_code"
+          type: "int"
+          description: "The error code. This is a success so ```-1``` is the result."
+          example: -1
+        -
+           name: "success"
+           type: "bool"
+           description: "Whether or not the registration was successful. ``true`` or ``false``"
+           example: true
+    failure:
+      code: 403
+      results:
+        -
+          name: "success"
+          type: "bool"
+          description: "Whether or not the registration was successful. ``true`` or ``false``"
+          example: false
+        -
+          name: "err_code"
+          type: "int"
+          description: "The error code."
+          example: 2001
+        -
+          name: "error"
+          type: "string"
+          description: "The error message."
+          example: "That email is already in use."
+      errors:
+        -
+          code: 2001
+          error: "That email is already in use."
+        -
+          code: 101
+          error: "Invalid Parameters"

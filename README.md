@@ -11,7 +11,7 @@ PHP Server with **PHP_YAML** extension installed.
 * Modified the script so that you no longer need to define the return type of success and failures.
 * Added script version number to the HTML title.
 * Made a config.php file for easy configuration.
-* Modified document.class.php to work in subfolders eg http://www.test.com/api_documentation/{SCRIPT HERE}
+* Modified document.class.php to work in subfolders eg http://www.test.com/api_documentation/{SCRIPT_HERE}
 
 ##Usage
 Simply edit the **example.yaml** file to your needs.
@@ -42,9 +42,9 @@ Each function is formatted like so.
           description: "The error code. This is a success so ```-1``` is the result."
           example: -1
         -
-           name: "success"
-           description: "Whether or not the request was successful. ``true`` or ``false``"
-           example: true
+          name: "success"
+          description: "Whether or not the request was successful. ``true`` or ``false``"
+          example: true
     failure:
       code: 403
       results:

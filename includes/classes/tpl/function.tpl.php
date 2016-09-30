@@ -136,7 +136,7 @@ if(isset($func["success"])){
 						<?=$value["name"]?>
 					</td>
 					<td>
-						<?=isset($value["type"]) ? parseTypes(ucwords($value["type"])) : "<i>N/A</i>"?>
+						<?=isset($value["example"]) ? getTypes($value["example"]) : "<i>N/A</i>"?>
 					</td>
 					<td>
 						<?=isset($value["description"]) ? $document->parseCode($value["description"]) : "<i>N/A</i>"?>
@@ -177,7 +177,7 @@ if(isset($func["failure"])){
 						<?=$value["name"]?>
 					</td>
 					<td>
-						<?=isset($value["type"]) ? parseTypes(ucwords($value["type"])) : "<i>N/A</i>"?>
+						<?=isset($value["example"]) ? getTypes($value["example"]) : "<i>N/A</i>"?>
 					</td>
 					<td>
 						<?=isset($value["description"]) ? $document->parseCode($value["description"]) : "<i>N/A</i>"?>

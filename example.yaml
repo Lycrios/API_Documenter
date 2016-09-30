@@ -31,12 +31,10 @@ functions:
       results:
         -
           name: "err_code"
-          type: "int"
           description: "The error code. This is a success so ```-1``` is the result."
           example: -1
         -
            name: "success"
-           type: "bool"
            description: "Whether or not the request was successful. ``true`` or ``false``"
            example: true
     failure:
@@ -44,17 +42,14 @@ functions:
       results:
         -
           name: "success"
-          type: "bool"
           description: "Whether or not the request was successful. ``true`` or ``false``"
           example: false
         -
           name: "err_code"
-          type: "int"
           description: "The error code."
           example: 2001
         -
           name: "error"
-          type: "string"
           description: "The error message."
           example: "That email is already in use."
       errors:

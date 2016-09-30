@@ -5,8 +5,9 @@
 * File: index.php
 */
 
-$file_name = "example.yaml";
 
+
+include("config.php");
 include("includes/global.php");
 
 if(file_exists($file_name)){
@@ -20,7 +21,7 @@ if(file_exists($file_name)){
 <html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title><?=$document->title." V".$document->version?> ~ JBS Documenter</title>
+	<title><?=$document->title." V".$document->version?> ~ JBS Documenter V<?=version?></title>
 	<link rel="stylesheet" type="text/css" href="<?=URL?>css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL?>css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL?>css/documenter.css">

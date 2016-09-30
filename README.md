@@ -5,6 +5,14 @@ With simple YAML file you can document your server-side API and have beautiful e
 ##Requirements
 PHP Server with **PHP_YAML** extension installed.
 
+## Recent Updates
+
+### Version 1.01
+* Modified the script so that you no longer need to define the return type of success and failures.
+* Added script version number to the HTML title.
+* Made a config.php file for easy configuration.
+* Modified document.class.php to work in subfolders eg http://www.test.com/api_documentation/{SCRIPT HERE}
+
 ##Usage
 Simply edit the **example.yaml** file to your needs.
 Each function is formatted like so.
@@ -31,12 +39,10 @@ Each function is formatted like so.
       results:
         -
           name: "err_code"
-          type: "int"
           description: "The error code. This is a success so ```-1``` is the result."
           example: -1
         -
            name: "success"
-           type: "bool"
            description: "Whether or not the request was successful. ``true`` or ``false``"
            example: true
     failure:
@@ -44,17 +50,14 @@ Each function is formatted like so.
       results:
         -
           name: "success"
-          type: "bool"
           description: "Whether or not the request was successful. ``true`` or ``false``"
           example: false
         -
           name: "err_code"
-          type: "int"
           description: "The error code."
           example: 2001
         -
           name: "error"
-          type: "string"
           description: "The error message."
           example: "That email is already in use."
       errors:

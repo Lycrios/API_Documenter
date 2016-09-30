@@ -44,7 +44,7 @@ class Document{
 	}
 
 	private function renderFunctionPage($parameters){
-		include("/tpl/function.tpl.php");
+		include("tpl/function.tpl.php");
 	}
 
 	public function getFunction($function){
@@ -64,20 +64,13 @@ class Document{
 
 				$html .= "\t<span class=\"text-success\">\"$value[name]\"</span>: ";
 				if(isset($value["example"])){
-				switch($value["type"]){
-					case "bool": case "boolean":
-						if(is_bool($value["example"])){
-							$html .= "<span class=\"text-warning\">".(isset($value["example"]) ? ($value["example"] == 1 ? "true" : "false") : "false")."</span>";
-							break;
-						}
-					case "int":
-						if(is_int($value["example"])){
-							$html .= "<span class=\"text-info\">".(isset($value["example"]) ? $value["example"] : "0")."</span>";
-							break;	
-						}
-					default:
+					if(is_bool($value["example"])){
+						$html .= "<span class=\"text-warning\">".(isset($value["example"]) ? ($value["example"] == 1 ? "true" : "false") : "false")."</span>";
+					}elseif(is_int($value["example"]) || is_float($value["example"]) || is_double($value["example"])){
+						$html .= "<span class=\"text-info\">".(isset($value["example"]) ? $value["example"] : "0")."</span>";
+					}else{
 						$html .= "<span class=\"text-success\">\"".(isset($value["example"]) ? $value["example"] : "<i>N/A</i>")."\"</span>";
-				}
+					}
 				}else{
 					$html .="<span class=\"text-success\">\"<i>N/A</i>\"</span>";
 				}
@@ -97,20 +90,13 @@ class Document{
 			foreach ($func["failure"]["results"] as $key => $value) {
 				$html .= "\t<span class=\"text-success\">\"$value[name]\"</span>: ";
 				if(isset($value["example"])){
-				switch($value["type"]){
-					case "bool": case "boolean":
-						if(is_bool($value["example"])){
-							$html .= "<span class=\"text-warning\">".(isset($value["example"]) ? ($value["example"] == 1 ? "true" : "false") : "false")."</span>";
-							break;
-						}
-					case "int":
-						if(is_int($value["example"])){
-							$html .= "<span class=\"text-info\">".(isset($value["example"]) ? $value["example"] : "0")."</span>";
-							break;	
-						}
-					default:
+					if(is_bool($value["example"])){
+						$html .= "<span class=\"text-warning\">".(isset($value["example"]) ? ($value["example"] == 1 ? "true" : "false") : "false")."</span>";
+					}elseif(is_int($value["example"]) || is_float($value["example"]) || is_double($value["example"])){
+						$html .= "<span class=\"text-info\">".(isset($value["example"]) ? $value["example"] : "0")."</span>";
+					}else{
 						$html .= "<span class=\"text-success\">\"".(isset($value["example"]) ? $value["example"] : "<i>N/A</i>")."\"</span>";
-				}
+					}
 				}else{
 					$html .="<span class=\"text-success\">\"<i>N/A</i>\"</span>";
 				}

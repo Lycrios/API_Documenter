@@ -5,7 +5,8 @@
 * File: global.php
 */
 
-define("URL","http://api.dev/",true);
+define("version",1.01);
+define("URL",$url,true);
 $page = "home";
 $parameters = array();
 
@@ -27,5 +28,18 @@ function parseTypes($type){
 		$type = "Integer";
 	}
 	return $type;
+}
+
+function getTypes($type){
+	if(is_bool($type)){
+		return "Boolean";
+	}elseif(is_int($type)){
+		return "Integer";
+	}elseif(is_float($type)){
+		return "Float";
+	}elseif(is_double($type)){
+		return "Double";
+	}
+	return "String";
 }
 ?>

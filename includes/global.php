@@ -5,7 +5,7 @@
 * File: global.php
 */
 
-define("version",1.01);
+define("version",1.02);
 define("URL",$url,true);
 $page = "home";
 $parameters = array();

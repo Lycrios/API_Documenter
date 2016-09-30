@@ -7,6 +7,9 @@ PHP Server with **PHP_YAML** extension installed.
 
 ## Recent Updates
 
+### Version 1.02
+* Added some fail safe checks (AKA Bug fixes on the function pages.)
+
 ### Version 1.01
 * Modified the script so that you no longer need to define the return type of success and failures.
 * Added script version number to the HTML title.

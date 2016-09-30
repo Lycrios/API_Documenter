@@ -11,9 +11,9 @@ $func = $document->getFunction($parameters["function"]);
 ?>
 <div class="row">
 	<div class="col-md-12">
-		<h2><?=ucwords(preg_replace("/_/"," ",$func["name"])).($func["short-desc"] != null ? (" - ".$func["short-desc"]) : "" )?></h2>
+		<h2><?=ucwords(preg_replace("/_/"," ",$func["name"])).(isset($func["short-desc"]) ? (" - ".$func["short-desc"]) : "" )?></h2>
 		<p>
-			<?=$func["description"]?>
+			<?=isset($func["description"]) ? $func["description"] : "&nbsp;" ?>
 		</p>
 	</div>
 </div>
@@ -28,17 +28,17 @@ if(count($func["parameters"]["get"]) > 0){
 ?>
 <div class="row">
 	<div class="col-md-12">
-		<?if(count($func["parameters"]["get"]) > 0){?>
+		<?if(isset($func["parameters"]["get"]) && count($func["parameters"]["get"]) > 0){?>
 		<span class="label label-success mb5">GET</span>
 		<?}?>
-		<?if(count($func["parameters"]["post"]) > 0){?>
+		<?if(isset($func["parameters"]["post"]) && count($func["parameters"]["post"]) > 0){?>
 		<span class="label label-primary mb5">POST</span>
 		<?}?>
 		<pre class="mt5 uri"><code><?=$document->base_url.$func["url"].$get_params?></code></pre>
 	</div>
 </div>
 <?
-if(count($func["parameters"]["get"]) > 0){
+if(isset($func["parameters"]["get"]) && count($func["parameters"]["get"]) > 0){
 ?>
 <div class="row">
 	<div class="col-md-12">
@@ -76,7 +76,7 @@ if(count($func["parameters"]["get"]) > 0){
 <?
 }
 
-if(count($func["parameters"]["post"]) > 0){
+if(isset($func["parameters"]["post"]) && count($func["parameters"]["post"]) > 0){
 ?>
 <div class="row">
 	<div class="col-md-12">

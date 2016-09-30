@@ -34,9 +34,32 @@ functions:
           description: "The error code. This is a success so ```-1``` is the result."
           example: -1
         -
-           name: "success"
-           description: "Whether or not the request was successful. ``true`` or ``false``"
-           example: true
+          name: "success"
+          description: "Whether or not the request was successful. ``true`` or ``false``"
+          example: true
+        -
+          name: "array_data"
+          description: "An array in an array"
+          example:
+            -
+              name: "str_object"
+              value: "string_value"
+            -
+              name: "int_object"
+              value: 10
+            -
+              name: "bool_object"
+              value: true
+            -
+              name: "array_object_of_numbers"
+              value:
+                -
+                  value: 10
+                -
+                  value: 11
+                -
+                  value: 12
+
     failure:
       code: 403
       results:

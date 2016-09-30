@@ -5,7 +5,7 @@
 * File: global.php
 */
 
-define("version",1.02);
+define("version",1.03);
 define("URL",$url,true);
 $page = "home";
 $parameters = array();
@@ -39,6 +39,8 @@ function getTypes($type){
 		return "Float";
 	}elseif(is_double($type)){
 		return "Double";
+	}elseif(is_array($type)){
+		return "Array";
 	}
 	return "String";
 }

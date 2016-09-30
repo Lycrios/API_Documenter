@@ -7,6 +7,10 @@ PHP Server with **PHP_YAML** extension installed.
 
 ## Recent Updates
 
+### Version 1.03
+* Removed last unnecessary `,` in success and failure examples.
+* Added Array support in the success and failure examples.
+
 ### Version 1.02
 * Added some fail safe checks (AKA Bug fixes on the function pages.)
 
@@ -14,7 +18,7 @@ PHP Server with **PHP_YAML** extension installed.
 * Modified the script so that you no longer need to define the return type of success and failures.
 * Added script version number to the HTML title.
 * Made a config.php file for easy configuration.
-* Modified document.class.php to work in subfolders eg http://www.test.com/api_documentation/{SCRIPT_HERE}
+* Modified document.class.php to work in sub-folders ex: http://www.test.com/api_documentation/{SCRIPT_HERE}
 
 ##Usage
 Simply edit the **example.yaml** file to your needs.
@@ -48,6 +52,29 @@ Each function is formatted like so.
           name: "success"
           description: "Whether or not the request was successful. ``true`` or ``false``"
           example: true
+        -
+          name: "array_data"
+          description: "An array in an array"
+          example:
+            -
+              name: "str_object"
+              value: "string_value"
+            -
+              name: "int_object"
+              value: 10
+            -
+              name: "bool_object"
+              value: true
+            -
+              name: "array_object_of_numbers"
+              value:
+                -
+                  value: 10
+                -
+                  value: 11
+                -
+                  value: 12
+
     failure:
       code: 403
       results:

@@ -11,7 +11,13 @@ include("config.php");
 include("includes/global.php");
 
 if(file_exists($file_name)){
-	$document = new Document($file_name);
+	if(extension_loaded("yaml")){
+		$document = new Document($file_name);
+	}else{
+		echo "YAML NOT INSTALLED.";
+		phpinfo();
+		exit;
+	}
 }else{
 	include("error/403.php");
 	exit;

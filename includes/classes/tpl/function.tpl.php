@@ -22,7 +22,7 @@ $get_params = "";
 
 if(count($func["parameters"]["get"]) > 0){
 	foreach ($func["parameters"]["get"] as $key => $value) {
-		$get_params .= "&".$value["name"]."=[$value[name]]";
+		$get_params .= "&amp;".$value["name"]."=[$value[name]]";
 	}
 }
 ?>

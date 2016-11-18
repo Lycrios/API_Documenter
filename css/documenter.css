@@ -39,3 +39,7 @@ pre.uri{
 .mb5{
 	margin-bottom:5px;
 }
+
+.text-disabled{
+	color:#666666;
+}

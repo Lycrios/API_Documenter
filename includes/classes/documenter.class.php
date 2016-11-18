@@ -66,16 +66,27 @@ class Document{
 			$html .= "<span class=\"text-info\">".(isset($value) ? $value : "0")."</span>";
 		}elseif(is_array($value)){
 			$html .= "[\n";
+			$tick = 0;
+			$total = count($value);
 			foreach ($value as $key => $v) {
 				for($i=0;$i<$level;$i++){
 					$html .= "\t";
 				}
 				if(isset($v["name"])){
-					$html .= "\t".$this->formatValue($v["name"],$level + 1).": ".$this->formatValue($v["value"],$level + 1).",\n";
+					$html .= "\t".$this->formatValue($v["name"],$level + 1).": ".$this->formatValue($v["value"],$level + 1);
 				}else{
-					$html .= "\t".$this->formatValue($v["value"],$level + 1).",\n";
+					$html .= "\t".$this->formatValue($v["value"],$level + 1);
 				}
-				
+				$tick++;
+				if($tick < $total){
+					$html .= ",";
+				}
+
+				if(isset($v["comment"])){
+					$html .= "<span class=\"text-disabled\"> // ".$v["comment"]."</span>";
+				}
+
+				$html .= "\n";
 			}
 			for($i=0;$i<$level-1;$i++){
 				$html .= "\t";
@@ -84,7 +95,6 @@ class Document{
 		}else{
 			$html .= "<span class=\"text-success\">\"".(isset($value) ? $value : "<i>N/A</i>")."\"</span>";
 		}
-
 		return $html;
 	}
 
@@ -92,8 +102,9 @@ class Document{
 		$func = $this->getFunction($function_name);
 		if(isset($func["success"]["results"])){
 			$html = "{\n";
-			foreach ($func["success"]["results"] as $key => $value) {
-
+			$tick = 0;
+			$total = count($func["success"]["results"]);
+			foreach ($func["success"]["results"] as $key => $value){
 				$html .= "\t<span class=\"text-success\">\"$value[name]\"</span>: ";
 				if(isset($value["example"])){
 					if(is_bool($value["example"])){
@@ -102,14 +113,23 @@ class Document{
 						$html .= "<span class=\"text-info\">".(isset($value["example"]) ? $value["example"] : "0")."</span>";
 					}elseif(is_array($value["example"])){
 						$html .= "[\n";
-						foreach ($value["example"] as $key => $value) {
-							if(isset($value["name"])){
-								$html .= "\t\t".$this->formatValue($value["name"]).":".$this->formatValue($value["value"]).",\n";
+						$sub_tick = 0;
+						$total_sub = count($value["example"]);
+						foreach ($value["example"] as $key => $v) {
+							if(isset($v["name"])){
+								$html .= "\t\t".$this->formatvalue($v["name"]).":".$this->formatvalue($v["value"]);
 							}else{
-								$html .= "\t\t".$this->formatValue($value["value"]).",\n";
+								$html .= "\t\t".$this->formatvalue($v["value"]);
 							}
+							$sub_tick++;
+							if($sub_tick < $total_sub){
+								$html .= ",";
+							}
+							if(isset($v["comment"])){
+								$html .= "<span class=\"text-disabled\"> // ".$v["comment"]."</span>";
+							}
+							$html .= "\n";
 						}
-						$html = substr($html,0,strlen($html) - 2)."\n";
 						$html .= "\t]";
 					}else{
 						$html .= "<span class=\"text-success\">\"".(isset($value["example"]) ? $value["example"] : "<i>N/A</i>")."\"</span>";
@@ -117,9 +137,15 @@ class Document{
 				}else{
 					$html .="<span class=\"text-success\">\"<i>N/A</i>\"</span>";
 				}
-				$html .= ",\n";
+				$tick++;
+				if($tick<$total){
+					$html .= ",";
+				}
+				if(isset($value["comment"])){
+					$html .= "<span class=\"text-disabled\"> // ".$value["comment"]."</span>";
+				}
+				$html .= "\n";
 			}
-			$html = substr($html,0,strlen($html) - 2)."\n";
 			$html .= "}";
 			return $html;
 		}else{

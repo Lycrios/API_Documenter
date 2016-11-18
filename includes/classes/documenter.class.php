@@ -142,7 +142,7 @@ class Document{
 						$total_sub = count($value["example"]);
 						$last_value_is_object = false;
 						foreach ($value["example"] as $key => $v) {
-							$empty = $total == 1 && $v["value"] == null;
+							$empty = $total_sub == 1 && $v["value"] == null;
 							if($sub_tick == 0){
 								if(!is_array($v["value"]) && isset($v["name"]) && !$empty){
 									$html .= "{";
@@ -157,8 +157,7 @@ class Document{
 							if(isset($v["name"])){
 								$html .= "\t\t".$this->formatvalue($v["name"]).":".$this->formatvalue($v["value"]);
 							}else{
-								if($v["value"] == "empty"){
-								}else{
+								if(!$empty){
 									$html .= "\t\t".$this->formatvalue($v["value"]);
 								}
 							}
@@ -169,12 +168,17 @@ class Document{
 							if(isset($v["comment"])){
 								$html .= "<span class=\"text-disabled\"> // ".$v["comment"]."</span>";
 							}
-							$html .= "\n";
+							if(!$empty){
+								$html .= "\n";
+							}
 						}
 						if(!is_array($v["value"]) && isset($v["name"]) && !$empty || $last_value_is_object){
 							$html .= "\t}";
 						}else{
-							$html .= "\t]";
+							if(!$empty){
+								$html .= "\t";
+							}
+							$html .= "]";
 						}
 					}else{
 						$html .= "<span class=\"text-success\">\"".(isset($value["example"]) ? $value["example"] : "<i>N/A</i>")."\"</span>";

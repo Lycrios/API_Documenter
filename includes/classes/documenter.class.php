@@ -67,10 +67,16 @@ class Document{
 		}elseif(is_array($value)){
 			$tick = 0;
 			$total = count($value);
+			$last_value_is_object = false;
 			foreach ($value as $key => $v){
 				$empty = $total == 1 && $v["value"] == null;
 				if($tick == 0){
-					$html .= "[";
+					if(!is_array($v["value"]) && isset($v["name"]) && !$empty){
+						$html .= "{";
+						$last_value_is_object = true;
+					}else{
+						$html .= "[";
+					}
 					if(!$empty){
 						$html .= "\n";
 					}
@@ -106,7 +112,11 @@ class Document{
 				}
 				$html .= "\t";
 			}
-			$html .= "]";
+			if(!is_array($v["value"]) && isset($v["name"]) && !$empty || $last_value_is_object){
+				$html .= "}";
+			}else{
+				$html .= "]";
+			}
 		}else{
 			$html .= "<span class=\"text-success\">\"".(isset($value) ? $value : "<i>N/A</i>")."\"</span>";
 		}
@@ -135,7 +145,6 @@ class Document{
 								$html .= "\t\t".$this->formatvalue($v["name"]).":".$this->formatvalue($v["value"]);
 							}else{
 								if($v["value"] == "empty"){
-
 								}else{
 									$html .= "\t\t".$this->formatvalue($v["value"]);
 								}

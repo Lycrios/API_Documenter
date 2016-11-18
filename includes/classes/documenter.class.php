@@ -65,17 +65,28 @@ class Document{
 		}elseif(is_int($value) || is_float($value) || is_double($value)){
 			$html .= "<span class=\"text-info\">".(isset($value) ? $value : "0")."</span>";
 		}elseif(is_array($value)){
-			$html .= "[\n";
 			$tick = 0;
 			$total = count($value);
-			foreach ($value as $key => $v) {
-				for($i=0;$i<$level;$i++){
-					$html .= "\t";
+			foreach ($value as $key => $v){
+				$empty = $total == 1 && $v["value"] == null;
+				if($tick == 0){
+					$html .= "[";
+					if(!$empty){
+						$html .= "\n";
+					}
+				}
+				
+				if(!$empty){
+					for($i=0;$i<$level;$i++){
+						$html .= "\t";
+					}
 				}
 				if(isset($v["name"])){
 					$html .= "\t".$this->formatValue($v["name"],$level + 1).": ".$this->formatValue($v["value"],$level + 1);
 				}else{
-					$html .= "\t".$this->formatValue($v["value"],$level + 1);
+					if(!$empty){
+						$html .= "\t".$this->formatValue($v["value"],$level + 1);
+					}
 				}
 				$tick++;
 				if($tick < $total){
@@ -85,13 +96,17 @@ class Document{
 				if(isset($v["comment"])){
 					$html .= "<span class=\"text-disabled\"> // ".$v["comment"]."</span>";
 				}
-
-				$html .= "\n";
+				if(!$empty){
+					$html .= "\n";
+				}
 			}
-			for($i=0;$i<$level-1;$i++){
+			if(!$empty){
+				for($i=0;$i<$level-1;$i++){
+					$html .= "\t";
+				}
 				$html .= "\t";
 			}
-			$html .= "\t]";
+			$html .= "]";
 		}else{
 			$html .= "<span class=\"text-success\">\"".(isset($value) ? $value : "<i>N/A</i>")."\"</span>";
 		}
@@ -119,7 +134,11 @@ class Document{
 							if(isset($v["name"])){
 								$html .= "\t\t".$this->formatvalue($v["name"]).":".$this->formatvalue($v["value"]);
 							}else{
-								$html .= "\t\t".$this->formatvalue($v["value"]);
+								if($v["value"] == "empty"){
+
+								}else{
+									$html .= "\t\t".$this->formatvalue($v["value"]);
+								}
 							}
 							$sub_tick++;
 							if($sub_tick < $total_sub){

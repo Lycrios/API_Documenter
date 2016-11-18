@@ -7,6 +7,13 @@ PHP Server with **PHP_YAML** extension installed.
 
 ## Recent Updates
 
+### Version 1.04
+* Fixed nested array formatting
+* Fixed bug with additional `,` at the end of an array
+* Added the ability to comment each item in the success examples
+* Added support for object type arrays
+* Added support for empty arrays
+
 ### Version 1.03
 * Removed last unnecessary `,` in success and failure examples.
 * Added Array support in the success and failure examples.
@@ -48,32 +55,34 @@ Each function is formatted like so.
           name: "err_code"
           description: "The error code. This is a success so ```-1``` is the result."
           example: -1
+          comment: "-1 is a successful response"
         -
           name: "success"
           description: "Whether or not the request was successful. ``true`` or ``false``"
           example: true
         -
           name: "array_data"
+          comment: "This is a comment for the array of data."
           description: "An array in an array"
           example:
-            -
-              name: "str_object"
-              value: "string_value"
-            -
-              name: "int_object"
-              value: 10
-            -
-              name: "bool_object"
-              value: true
-            -
-              name: "array_object_of_numbers"
-              value:
-                -
-                  value: 10
-                -
-                  value: 11
-                -
-                  value: 12
+              -
+                name: "str_object"
+                value: "string_value"
+              -
+                name: "int_object"
+                value: 10
+              -
+                name: "bool_object"
+                value: true
+              -
+                name: "array_of_values"
+                value:
+                  -
+                    value: 10
+                  -
+                    value: 11
+                  -
+                    value: 12
 
     failure:
       code: 403
@@ -101,4 +110,4 @@ Each function is formatted like so.
 
 ## Formatted Function Display
 
-![Above Function](http://s2.jumpbuttonstudio.com/example_function.png "Above Function")
+![Above Function](http://i.imgur.com/eHMLx80.png "Above Function")

@@ -129,6 +129,7 @@ class Document{
 			$html = "{\n";
 			$tick = 0;
 			$total = count($func["success"]["results"]);
+
 			foreach ($func["success"]["results"] as $key => $value){
 				$html .= "\t<span class=\"text-success\">\"$value[name]\"</span>: ";
 				if(isset($value["example"])){
@@ -137,10 +138,22 @@ class Document{
 					}elseif(is_int($value["example"]) || is_float($value["example"]) || is_double($value["example"])){
 						$html .= "<span class=\"text-info\">".(isset($value["example"]) ? $value["example"] : "0")."</span>";
 					}elseif(is_array($value["example"])){
-						$html .= "[\n";
 						$sub_tick = 0;
 						$total_sub = count($value["example"]);
+						$last_value_is_object = false;
 						foreach ($value["example"] as $key => $v) {
+							$empty = $total == 1 && $v["value"] == null;
+							if($sub_tick == 0){
+								if(!is_array($v["value"]) && isset($v["name"]) && !$empty){
+									$html .= "{";
+									$last_value_is_object = true;
+								}else{
+									$html .= "[";
+								}
+								if(!$empty){
+									$html .= "\n";
+								}
+							}
 							if(isset($v["name"])){
 								$html .= "\t\t".$this->formatvalue($v["name"]).":".$this->formatvalue($v["value"]);
 							}else{
@@ -158,7 +171,11 @@ class Document{
 							}
 							$html .= "\n";
 						}
-						$html .= "\t]";
+						if(!is_array($v["value"]) && isset($v["name"]) && !$empty || $last_value_is_object){
+							$html .= "\t}";
+						}else{
+							$html .= "\t]";
+						}
 					}else{
 						$html .= "<span class=\"text-success\">\"".(isset($value["example"]) ? $value["example"] : "<i>N/A</i>")."\"</span>";
 					}

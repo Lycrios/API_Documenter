@@ -58,7 +58,7 @@ class Document{
 
 	public function formatValue($value,$level = 2){
 		$html = "";
-		if($value == null){
+		if(is_null($value)){
 			$html .= "<span class=\"text-warning\">NULL</span>";
 		}elseif(is_bool($value)){
 			$html .= "<span class=\"text-warning\">".(isset($value) ? ($value == 1 ? "true" : "false") : "false")."</span>";
@@ -184,7 +184,11 @@ class Document{
 						$html .= "<span class=\"text-success\">\"".(isset($value["example"]) ? $value["example"] : "<i>N/A</i>")."\"</span>";
 					}
 				}else{
-					$html .="<span class=\"text-success\">\"<i>N/A</i>\"</span>";
+					if(is_null($value["example"])){
+						$html .= "<span class=\"text-warning\">NULL</span>";
+					}else{
+						$html .="<span class=\"text-success\">\"<i>N/A</i>\"</span>";
+					}
 				}
 				$tick++;
 				if($tick<$total){

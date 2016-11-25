@@ -5,7 +5,8 @@
 * File: index.php
 */
 
-
+$git = exec("git log --format=\"%H\" -n 1");
+define("GIT",$git,true);
 
 include("config.php");
 include("includes/global.php");
@@ -31,7 +32,7 @@ if(file_exists($file_name)){
 	<link rel="stylesheet" type="text/css" href="<?=URL?>css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL?>css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL?>css/documenter.css">
-	<link rel="stylesheet" type="text/css" href="<?=URL?>css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?=URL?>css/style.css?v=<?=GIT?>">
 	<link href="https://fonts.googleapis.com/css?family=Merriweather:900|Open+Sans" rel="stylesheet">
 	<script type="text/javascript" src="<?=URL?>js/jquery.min.js"></script>
 	<script type="text/javascript" src="<?=URL?>js/bootstrap.min.js"></script>

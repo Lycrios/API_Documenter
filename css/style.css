@@ -2,7 +2,7 @@
 * @Author: Matthew Auld
 * @Date:   2016-11-25 01:34:20
 * @Last Modified by:   Matthew Auld
-* @Last Modified time: 2016-11-25 02:37:21
+* @Last Modified time: 2016-11-25 02:38:59
 */
 
 .table-striped>tbody>tr:nth-of-type(odd).deprecated{
@@ -26,5 +26,5 @@
 }
 
 pre code{
-	white-space:nowrap;
+	white-space:pre;
 }

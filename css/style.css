@@ -1,0 +1,26 @@
+/*
+* @Author: Matthew Auld
+* @Date:   2016-11-25 01:34:20
+* @Last Modified by:   Matthew Auld
+* @Last Modified time: 2016-11-25 01:40:02
+*/
+
+.table-striped>tbody>tr:nth-of-type(odd).deprecated{
+	background:#969696;
+	color:#BFBFBF;
+	font-style:italic;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd).deprecated>td{
+	border-color:#6D6D6D;
+}
+
+.table-striped>tbody>tr:nth-of-type(even).deprecated{
+	background:#B5B5B5;
+	color:#D2D2D2;
+	font-style:italic;
+}
+
+.table-striped>tbody>tr:nth-of-type(even).deprecated>td{
+	border-color:#929292;
+}

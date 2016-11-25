@@ -55,9 +55,10 @@ if(isset($func["parameters"]["get"]) && count($func["parameters"]["get"]) > 0){
 			<?
 			foreach ($func["parameters"]["get"] as $key => $value) {
 			?>
-				<tr>
+				<tr<?=isset($value["deprecated"]) && $value["deprecated"] ? " class=\"deprecated\"" : ""?>>
 					<td>
 						<?=$value["name"]?>
+						<?=isset($value["deprecated"]) && $value["deprecated"] ? "<b class=\"pull-right\">(deprecated)</b>" : ""?>
 					</td>
 					<td>
 						<?=isset($value["type"]) ? parseTypes(ucwords($value["type"])) : "N/A"?>
@@ -93,9 +94,10 @@ if(isset($func["parameters"]["post"]) && count($func["parameters"]["post"]) > 0)
 			<?
 			foreach ($func["parameters"]["post"] as $key => $value) {
 			?>
-				<tr>
+				<tr<?=isset($value["deprecated"]) && $value["deprecated"] ? " class=\"deprecated\"" : ""?>>
 					<td>
 						<?=$value["name"]?>
+						<?=isset($value["deprecated"]) && $value["deprecated"] ? "<b class=\"pull-right\">(deprecated)</b>" : ""?>
 					</td>
 					<td>
 						<?=isset($value["type"]) ? parseTypes(ucwords($value["type"])) : "N/A"?>
